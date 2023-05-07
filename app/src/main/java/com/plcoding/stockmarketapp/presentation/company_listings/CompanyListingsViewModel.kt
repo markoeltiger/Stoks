@@ -40,6 +40,7 @@ class CompanyListingsViewModel @Inject constructor(
                 getCompanyListings(fetchFromRemote = true)
             }
             is CompanyListingsEvent.OnSearchQueryChange -> {
+                getCompanyListings(fetchFromRemote = true, query = event.query)
                 state = state.copy(searchQuery = event.query)
                 searchJob?.cancel()
                 searchJob = viewModelScope.launch {
@@ -66,14 +67,33 @@ class CompanyListingsViewModel @Inject constructor(
 
             }
 
-             forexRepo.getCompanyListings(true,"" )
+             forexRepo.getCompanyListings(true,query )
                 .collect { result ->
                     when(result) {
                         is Resource.Success -> {
                             result.data?.let { listings ->
-                                state = state.copy(
-                                    companies = listings
-                                )
+
+                                if (query!=null&&query!=""){
+                                    Log.e("searchfirsttime","searchfirsttimeq" +
+                                            "${query}")
+                             var mylist      =   listings.filter { it->
+                                it.name?.contains(query)!!
+
+
+                             }
+                                    state = state.copy(
+                                        companies = mylist
+                                    )
+
+                                }
+                                else{
+                                    state = state.copy(
+                                        companies = listings
+                                    )
+                                }
+
+
+
                             }
                         }
                         is Resource.Error -> Unit

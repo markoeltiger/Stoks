@@ -3,8 +3,7 @@ package com.plcoding.stockmarketapp.di
 import android.app.Application
 import androidx.compose.ui.unit.Constraints
 import androidx.room.Room
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import com.plcoding.stockmarketapp.data.local.StockDatabase
+ import com.plcoding.stockmarketapp.data.local.StockDatabase
 import com.plcoding.stockmarketapp.data.remote.MubashirApi
 import com.plcoding.stockmarketapp.data.remote.StockApi
 import com.plcoding.stockmarketapp.util.Constants
