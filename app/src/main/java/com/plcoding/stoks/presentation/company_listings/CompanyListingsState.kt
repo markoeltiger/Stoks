@@ -1,0 +1,12 @@
+package com.plcoding.stoks.presentation.company_listings
+
+import com.plcoding.stoks.domain.model.egForex.Row
+
+data class CompanyListingsState(
+    val companies: List<Row?>? = emptyList(),
+    val isLoading: Boolean = false,
+    val isRefreshing: Boolean = false,
+    val searchQuery: String = "",
+    val usdRate :String="",
+    val goldRate :String=""
+)
