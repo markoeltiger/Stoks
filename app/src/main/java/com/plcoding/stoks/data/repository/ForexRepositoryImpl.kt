@@ -4,6 +4,7 @@ import android.util.Log
 import com.plcoding.stoks.data.csv.CSVParser
 import com.plcoding.stoks.data.local.CompanyListingEntity
 import com.plcoding.stoks.data.local.StockDatabase
+import com.plcoding.stoks.data.mapper.toCompanyListing
 import com.plcoding.stoks.data.mapper.toCompanyListingEntity
 import com.plcoding.stoks.data.remote.MubashirApi
 import com.plcoding.stoks.domain.model.CompanyListing
@@ -65,11 +66,8 @@ override fun setCompanys(comanys:List<CompanyListing>){
 
             remoteListings?.let { listings ->
                 dao.clearCompanyListings()
-                Log.e("SavedToDB","SavedToDB")
-
-//                    data = dao
-//                        .searchCompanyListing("")
-//                        .map { it.toCompanyListing()
+                Log.e("SavedToDBForexRepo","SavedToDB")
+         
 //
             }
 

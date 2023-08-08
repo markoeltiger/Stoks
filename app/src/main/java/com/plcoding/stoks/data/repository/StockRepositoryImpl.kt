@@ -61,7 +61,7 @@ class StockRepositoryImpl @Inject constructor(
 
             remoteListings?.let { listings ->
                 dao.clearCompanyListings()
-                Log.e("SavedToDB","SavedToDB")
+                Log.e("SavedToDBStocksRepo","SavedToDB")
 //                dao.insertCompanyListings(
 //                    listings.map { it.toCompanyListingEntity() }
 //                )
@@ -74,6 +74,8 @@ class StockRepositoryImpl @Inject constructor(
             }
         }
     }
+
+
 
     override suspend fun getIntradayInfo(symbol: String): Resource<List<IntradayInfo>> {
         return try {

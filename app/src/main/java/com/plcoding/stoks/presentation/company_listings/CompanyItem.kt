@@ -1,5 +1,6 @@
 package com.plcoding.stoks.presentation.company_listings
 
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -62,8 +63,9 @@ fun CompanyItem(
 
         verticalAlignment = Alignment.CenterVertically
     ) {
+
         Spacer(modifier = Modifier.width(4.dp))
-        val image: Painter = painterResource(id = com.plcoding.stoks.R.drawable.heart_svgrepo_com)
+         val image: Painter = painterResource(id = com.plcoding.stoks.R.drawable.heart_svgrepo_com)
 
         Image(painter = image,contentDescription = "",  colorFilter = ColorFilter.tint(color = Color.White), modifier = Modifier
             .size(40.dp)

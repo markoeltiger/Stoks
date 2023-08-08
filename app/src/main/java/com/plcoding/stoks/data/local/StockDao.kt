@@ -13,12 +13,16 @@ interface StockDao {
         companyListingEntities: List<CompanyListingEntity>
     )
 
+
     @Query("DELETE FROM companylistingentity")
     suspend fun clearCompanyListings()
-@Query("SELECT * FROM CompanyListingEntity WHERE isFav == 1")
-suspend fun getFavsCompanys():List<CompanyListingEntity>
+
+    @Query("SELECT * FROM CompanyListingEntity WHERE isFav == 1")
+    suspend fun getFavsCompanys(): List<CompanyListingEntity>
+
     @Query("UPDATE CompanyListingEntity SET isFav = 1 WHERE symbol == :symbol")
-    suspend fun setFavCompany(symbol:String)
+    suspend fun setFavCompany(symbol: String)
+
     @Query(
         """
             SELECT * 

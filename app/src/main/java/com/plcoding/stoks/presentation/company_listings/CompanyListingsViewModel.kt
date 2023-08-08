@@ -13,6 +13,7 @@ import com.plcoding.stoks.domain.repository.StockRepository
 import com.plcoding.stoks.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.filter
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import java.io.IOException
@@ -34,6 +35,7 @@ class CompanyListingsViewModel @Inject constructor(
     init {
         getCompanyListings()
         getUSDRate()
+        getFav()
     }
 
     fun onEvent(event: CompanyListingsEvent) {
@@ -59,7 +61,10 @@ class CompanyListingsViewModel @Inject constructor(
             repository.setFav(symbol)
         }
     }
-
+    fun getFav() {
+        viewModelScope.launch(Dispatchers.IO) {
+        }
+    }
     private fun getUSDRate() {
         viewModelScope.launch(Dispatchers.IO) {
 
@@ -99,8 +104,14 @@ class CompanyListingsViewModel @Inject constructor(
 
                             result.data?.let { listings ->
 
-forexRepo.setCompanys( listings.map { CompanyListing(name = it.name!!, symbol = it.symbol!!, exchange = it.price.toString()!!) })
-                                 if (query != null && query != "") {
+                                forexRepo.setCompanys(listings.map {
+                                    CompanyListing(
+                                        name = it.name!!,
+                                        symbol = it.symbol!!,
+                                        exchange = it.price.toString()!!
+                                    )
+                                })
+                                if (query != null && query != "") {
                                     Log.e(
                                         "searchfirsttime", "searchfirsttimeq" +
                                                 "${query}"
@@ -119,8 +130,6 @@ forexRepo.setCompanys( listings.map { CompanyListing(name = it.name!!, symbol = 
                                         companies = listings
                                     )
                                 }
-
-
                             }
                         }
 
